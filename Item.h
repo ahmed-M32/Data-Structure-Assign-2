@@ -12,6 +12,7 @@ class Item
 public:
     Item(string name, string category, int price);
     bool operator<(Item &another);
+    void print();
 };
 
 #endif

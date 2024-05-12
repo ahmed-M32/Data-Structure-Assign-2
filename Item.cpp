@@ -11,3 +11,9 @@ bool Item::operator<(Item &another)
 {
     return (this->Price < another.Price);
 }
+
+void Item::print()
+{
+    cout << this->itemName << ", " << this->Price << ", " << this->Category;
+}
+
