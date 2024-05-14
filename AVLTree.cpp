@@ -164,7 +164,6 @@ AVLNode* AVLTree::add_by_category(AVLNode* node, Item item){
     return node;
 }
 
-
 void AVLTree::insert_by_category(Item item) {
     AVLNode* new_root = add_by_category(root, item);
     root = new_root;
@@ -233,3 +232,8 @@ void AVLTree::traverse() {
 }
 
 
+int main()
+{
+    AVLTree tree;
+
+}
