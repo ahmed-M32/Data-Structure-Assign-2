@@ -123,7 +123,6 @@ void AVLTree::insert_by_price(Item item)
     root = new_root;
 }
 
-
 AVLNode* AVLTree::add_by_name(AVLNode* node, Item item){
     // parameter 'node' is the root of the tree
     // function returns the new root of the tree
