@@ -9,6 +9,16 @@ Heap::Heap(vector<Item> arr)
     }
 }
 
+void Heap::insert_item(Item item)
+{
+    heap.push_back(item);
+}
+
+void Heap::Delete_item(int index)
+{
+    heap.erase(heap.begin() + index - 1);
+}
+
 int Heap::Get_parent(int num)
 {
     return (num - 1) / 2;
