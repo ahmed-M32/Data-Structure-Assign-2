@@ -25,8 +25,9 @@ class AVLTree {
         AVLNode* left_rotate(AVLNode* node);
         AVLNode* right_rotate(AVLNode* node);
         AVLNode* add_by_price(AVLNode* node, Item item);
-        AVLNode* add_by_category(AVLNode* node, Item item);
-        AVLNode* remove(AVLNode* node, Item item);
+        AVLNode* add_by_name(AVLNode* node, Item item);
+        AVLNode* remove_by_price(AVLNode* node, Item item);
+        AVLNode* remove_by_name(AVLNode* node, Item item);
         void print(AVLNode* node);
 
 public:
@@ -35,8 +36,9 @@ public:
         void clear();
         bool isEmpty();
         void insert_by_price(Item item);
-        void insert_by_category(Item item);
-        void pop(Item item);
+        void insert_by_name(Item item);
+        void pop_by_price(Item item);
+        void pop_by_name(Item item);
         void traverse();
 
 };

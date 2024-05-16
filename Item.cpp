@@ -18,14 +18,14 @@ bool Item::operator>(Item &another)
     return (this->Price > another.Price);
 }
 
-bool Item::operator<(string &another_category)
+bool Item::operator<(string &another_name)
 {// to compare categories
-    return (this->Category < another_category);
+    return (this->itemName < another_name);
 }
 
-bool Item::operator>(string &another_category)
+bool Item::operator>(string &another_name)
 {// to compare categories
-    return (this->Category > another_category);
+    return (this->itemName > another_name);
 }
 
 
