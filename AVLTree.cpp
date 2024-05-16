@@ -231,9 +231,3 @@ void AVLTree::traverse() {
     print(this->root);
 }
 
-
-int main()
-{
-    AVLTree tree;
-
-}

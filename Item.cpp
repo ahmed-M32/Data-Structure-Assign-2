@@ -7,36 +7,42 @@ Item::Item(string name, string category, int price)
     this->Price = price;
 }
 
-
 bool Item::operator<(Item &another)
-{// to compare prices
+{ // to compare prices
     return (this->Price < another.Price);
 }
 
 bool Item::operator>(Item &another)
-{// to compare prices
+{ // to compare prices
     return (this->Price > another.Price);
 }
 
+bool Item::operator<=(Item &another)
+{
+    return (this->Price <= another.Price);
+}
+
+bool Item::operator>=(Item &another)
+{
+    return (this->Price >= another.Price);
+}
+
 bool Item::operator<(string &another_category)
-{// to compare categories
+{ // to compare categories
     return (this->Category < another_category);
 }
 
 bool Item::operator>(string &another_category)
-{// to compare categories
+{ // to compare categories
     return (this->Category > another_category);
 }
 
-
 bool Item::operator==(Item &another)
 {
-    return (this->Price == another.Price
-            && this->Category == another.Category
-            && this->itemName == another.itemName);
+    return (this->Price == another.Price && this->Category == another.Category && this->itemName == another.itemName);
 }
 
 void Item::print()
 {
-    cout << this->itemName << ", " << this->Price << ", " << this->Category;
+    cout << this->itemName << ", " << this->Price << ", " << this->Category << endl;
 }
