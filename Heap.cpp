@@ -41,24 +41,47 @@ void Heap::Insert_Item(Item item)
 
 void Heap::Heap_sort()
 {
-    // to be done
+    int n = heap.size();
+
+    for (int i = n / 2 - 1; i >= 0; i--)
+    {
+        Max_heapify(n, i);
+    }
+
+    for (int i = n - 1; i > 0; i--)
+    {
+        swap(heap[0], heap[i]);
+        Max_heapify(i, 0);
+    }
 }
 
-void Heap::Max_heapify(int i)
+void Heap::Heap_sort_Name()
 {
-    if (i > heap.size())
+    int n = heap.size();
+
+    for (int i = n / 2 - 1; i >= 0; i--)
     {
-        return;
+        Max_heapify_By_Name(n, i);
     }
+
+    for (int i = n - 1; i > 0; i--)
+    {
+        swap(heap[0], heap[i]);
+        Max_heapify_By_Name(i, 0);
+    }
+}
+
+void Heap::Max_heapify(int size, int i)
+{
     int left = Get_Left_Chlid(i);
     int right = Get_Right_Child(i);
     int Max = i;
 
-    if (heap[Max] < heap[left] and left < heap.size())
+    if (heap[Max] < heap[left] and left < size)
     {
         Max = left;
     }
-    if (heap[Max] < heap[right] and right < heap.size())
+    if (heap[Max] < heap[right] and right < size)
     {
         Max = right;
     }
@@ -66,7 +89,7 @@ void Heap::Max_heapify(int i)
     if (Max != i)
     {
         swap(heap[i], heap[Max]);
-        Max_heapify(Max);
+        Max_heapify(size, Max);
     }
 }
 
@@ -101,7 +124,7 @@ void Heap::Build_Max()
 {
     for (int i = (heap.size() / 2 - 1); i >= 0; i--)
     {
-        Max_heapify(i);
+        Max_heapify(heap.size(), i);
     }
 }
 
@@ -113,27 +136,24 @@ void Heap::Build_Min()
     }
 }
 
-void Heap::Max_heapify_By_Name(int i)
+void Heap::Max_heapify_By_Name(int size, int i)
 {
 
-    int left = Get_Left_Chlid(i);
-    int right = Get_Right_Child(i);
+    int left = 2*i+1;
+    int right = 2*i+2;
     int Max = i;
-
-    if (heap[Max] < heap[left].itemName and left < heap.size())
+    if ((heap[Max] < heap[left].itemName) and left <= size)
     {
         Max = left;
     }
-    if (heap[Max] < heap[right].itemName and right < heap.size())
+    if ((heap[Max] < heap[right].itemName) and right <= size)
     {
         Max = right;
     }
-
     if (Max != i)
     {
-        cout<<"Help !!!!!1"<<endl;
         swap(heap[i], heap[Max]);
-        Max_heapify_By_Name(Max);
+        Max_heapify_By_Name(size, Max);
     }
 }
 
@@ -163,10 +183,10 @@ void Heap::Min_heapify_By_Name(int i)
 void Heap::Build_Max_By_Name()
 {
     int n = heap.size();
-    for (int i = n / 2 - 1; i >= 0; i--)
+    for (int i = floor(n / 2) - 1; i >= 0; i--)
     {
         cout << i << endl;
-        Max_heapify_By_Name(i);
+        Max_heapify_By_Name(n, i);
     }
 }
 

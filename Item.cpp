@@ -7,6 +7,11 @@ Item::Item(string name, string category, int price)
     this->Price = price;
 }
 
+string Item::get_category()
+{
+    return Category;
+}
+
 bool Item::operator<(Item &another)
 { // to compare prices
     return (this->Price < another.Price);
@@ -32,20 +37,19 @@ bool Item::operator>=(Item &another)
 }
 
 bool Item::operator<(string &another_name)
-{ // to compare categories
+{
     return (this->itemName < another_name);
 }
 bool Item::operator>(string &another_name)
-{ // to compare categories
+{
     return (this->itemName > another_name);
 }
 bool Item::operator<=(string &another_name)
-{ // to compare categories
+{
     return (this->itemName <= another_name);
 }
 bool Item::operator>=(string &another_name)
-{ // to compare categories
-
+{
     return (this->itemName >= another_name);
 }
 
