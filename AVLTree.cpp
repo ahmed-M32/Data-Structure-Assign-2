@@ -123,8 +123,8 @@ void AVLTree::insert_by_price(Item item)
     root = new_root;
 }
 
-AVLNode *AVLTree::add_by_name(AVLNode *node, Item item)
-{
+
+AVLNode* AVLTree::add_by_name(AVLNode* node, Item item){
     // parameter 'node' is the root of the tree
     // function returns the new root of the tree
     if (node == nullptr)
@@ -136,6 +136,11 @@ AVLNode *AVLTree::add_by_name(AVLNode *node, Item item)
         node->left = add_by_name(node->left, item);
     else
         node->right = add_by_name(node->right, item);
+    if (item < node->data.itemName )
+        node->left = add_by_name(node->left, item);
+    else
+        node->right = add_by_name(node->right, item);
+
 
     // get balance factor
     int balance_factor = get_height(node->left) - get_height(node->right);
@@ -145,7 +150,7 @@ AVLNode *AVLTree::add_by_name(AVLNode *node, Item item)
         return right_rotate(node);
 
     // Right Right Case
-    if (balance_factor < -1 and item > node->right->data.itemName)
+    if (balance_factor < -1 and  item > node->right->data.itemName)
         return left_rotate(node);
 
     // Left Right Case
