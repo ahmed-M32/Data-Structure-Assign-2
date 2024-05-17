@@ -28,7 +28,8 @@ class AVLTree {
         AVLNode* add_by_name(AVLNode* node, Item item);
         AVLNode* remove_by_price(AVLNode* node, Item item);
         AVLNode* remove_by_name(AVLNode* node, Item item);
-        void print(AVLNode* node);
+        void print_ascend(AVLNode* node);
+        void print_descend(AVLNode* node);
 
 public:
         AVLNode* search(Item& item);
@@ -39,7 +40,8 @@ public:
         void insert_by_name(Item item);
         void pop_by_price(Item item);
         void pop_by_name(Item item);
-        void traverse();
+        void traverse_ascend();
+        void traverse_descend();
 
 };
 

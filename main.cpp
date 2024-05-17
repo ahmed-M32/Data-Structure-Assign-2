@@ -39,7 +39,6 @@ int main()
       case 1: // Binary search tree
           break;
       case 2: // Heap
-
           break;
       case 3:
           AVLTree tree;
@@ -55,6 +54,7 @@ int main()
           cout << "6- Display all the items sorted by their name descending\n";
           cout << "7- Display all the items sorted by their prices ascending\n";
           cout << "8- Display all the items sorted by their prices descending\n";
+          cout << "9-Exit\n";
           cin >> choice;
 
           switch (choice)
@@ -75,6 +75,10 @@ int main()
               break;
           case 8:
               break;
+          case 9:
+              break;
           }
       }
 }
+
+

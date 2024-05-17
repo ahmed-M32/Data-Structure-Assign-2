@@ -275,18 +275,35 @@ void AVLTree::pop_by_name(Item item)
     AVLNode *new_root = remove_by_name(root, item);
     root = new_root;
 }
-void AVLTree::print(AVLNode *node)
+void AVLTree::print_ascend(AVLNode *node)
 {
     if (node == nullptr)
         return;
-    print(node->left);
+    print_ascend(node->left);
     node->data.print();
     cout << " ";
-    print(node->right);
+    print_ascend(node->right);
 }
 
-void AVLTree::traverse()
+void AVLTree::traverse_ascend()
 {
-    print(this->root);
+    print_ascend(this->root);
 }
+
+void AVLTree::print_descend(AVLNode *node)
+{
+    if (node == nullptr)
+        return;
+    print_ascend(node->right);
+    node->data.print();
+    cout << " ";
+    print_ascend(node->left);
+}
+
+void AVLTree::traverse_descend()
+{
+    print_descend(this->root);
+}
+
+
 
