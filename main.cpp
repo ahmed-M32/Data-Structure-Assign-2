@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 #include "AVLTree.h"
 #include "Heap.h"
-#include "AVLTree.cpp"
-#include "Heap.cpp"
 #include "Item.h"
-#include "Item.cpp"
+// ONLY INCLUDE .h FILES not .cpp
 using namespace std;
 
 int main()
