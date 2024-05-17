@@ -44,6 +44,7 @@ int main()
           AVLTree tree;
           break;
       }
+      bool break_loop = false;
       while (true)
       {
           cout << "1- Add item data, sorted by price\n";
@@ -56,28 +57,31 @@ int main()
           cout << "8- Display all the items sorted by their prices descending\n";
           cout << "9-Exit\n";
           cin >> choice;
-
           switch (choice)
           {
-          case 1:
+          case 1:// add by price
               break;
-          case 2:
+          case 2:// add by name
               break;
-          case 3:
+          case 3:// read from file
               break;
-          case 4:
+          case 4:// remove item
               break;
-          case 5:
+          case 5:// display sorted by name ascend
               break;
-          case 6:
+          case 6:// display sorted by name descend
               break;
-          case 7:
+          case 7:// display sorted by price ascend
               break;
-          case 8:
+          case 8:// display sorted by name descend
               break;
-          case 9:
+          case 9:// Break
+              break_loop = true;
               break;
           }
+          if(break_loop)
+              break;
+
       }
 }
 
