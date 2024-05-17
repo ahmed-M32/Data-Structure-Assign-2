@@ -15,10 +15,12 @@ public:
     string get_category();
     bool operator<(Item &another);
     bool operator>(Item &another);
-    bool operator<(string &another);
     bool operator<=(Item &another);
     bool operator>=(Item &another);
     bool operator>(string &another);
+    bool operator<(string &another);
+    bool operator<=(string &another_name);
+    bool operator>=(string &another_name);
     void print();
     bool operator==(Item &another);
 };

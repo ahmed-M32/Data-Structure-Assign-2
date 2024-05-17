@@ -21,6 +21,10 @@ public:
     void Min_heapify(int i);
     void Build_Max();
     void Build_Min();
+    void Max_heapify_By_Name(int i);
+    void Min_heapify_By_Name(int i);
+    void Build_Max_By_Name();
+    void Build_Min_By_Name();
     void print_heap();
 };
 
