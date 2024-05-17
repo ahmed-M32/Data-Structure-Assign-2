@@ -107,9 +107,75 @@ void Heap::Build_Max()
 
 void Heap::Build_Min()
 {
-    for (int i = (heap.size() / 2 - 1); i >= 0; i--)
+    for (int i = ((heap.size() / 2) - 1); i >= 0; i--)
     {
         Min_heapify(i);
+    }
+}
+
+void Heap::Max_heapify_By_Name(int i)
+{
+
+    int left = Get_Left_Chlid(i);
+    int right = Get_Right_Child(i);
+    int Max = i;
+
+    if (heap[Max] < heap[left].itemName and left < heap.size())
+    {
+        Max = left;
+    }
+    if (heap[Max] < heap[right].itemName and right < heap.size())
+    {
+        Max = right;
+    }
+
+    if (Max != i)
+    {
+        cout<<"Help !!!!!1"<<endl;
+        swap(heap[i], heap[Max]);
+        Max_heapify_By_Name(Max);
+    }
+}
+
+void Heap::Min_heapify_By_Name(int i)
+{
+
+    int left = Get_Left_Chlid(i);
+    int right = Get_Right_Child(i);
+    int Min = i;
+
+    if (heap[Min] > heap[left].itemName and left < heap.size())
+    {
+        Min = left;
+    }
+    if (heap[Min] > heap[right].itemName and right < heap.size())
+    {
+        Min = right;
+    }
+
+    if (Min != i)
+    {
+        swap(heap[i], heap[Min]);
+        Min_heapify_By_Name(Min);
+    }
+}
+
+void Heap::Build_Max_By_Name()
+{
+    int n = heap.size();
+    for (int i = n / 2 - 1; i >= 0; i--)
+    {
+        cout << i << endl;
+        Max_heapify_By_Name(i);
+    }
+}
+
+void Heap::Build_Min_By_Name()
+{
+    for (int i = ((heap.size() / 2) - 1); i >= 0; i--)
+    {
+        cout << i << endl;
+        Min_heapify_By_Name(i);
     }
 }
 

@@ -4,36 +4,37 @@
 #include "AVLTree.h"
 #include "Item.h"
 
-AVLNode::AVLNode(Item data) : data(data) {
+AVLNode::AVLNode(Item data) : data(data)
+{
     this->right = left = nullptr;
 }
 
-
-AVLTree::AVLTree() {
+AVLTree::AVLTree()
+{
     this->root = nullptr;
 }
 
-
-void AVLTree::clear() {
-    this-> root = nullptr;
+void AVLTree::clear()
+{
+    this->root = nullptr;
 }
 
-bool AVLTree::isEmpty() {
+bool AVLTree::isEmpty()
+{
     return this->root == nullptr;
 }
 
-
-AVLNode* AVLTree::search(Item& item) {
+AVLNode *AVLTree::search(Item &item)
+{
     // If item exists return it
     // else return node before it
-    AVLNode* node = root;
-    while(node != nullptr)
-    {   //if leaf or the searched for item , break
-        if( (node->left == nullptr and node->right == nullptr)
-            or node->data == item )
+    AVLNode *node = root;
+    while (node != nullptr)
+    { // if leaf or the searched for item , break
+        if ((node->left == nullptr and node->right == nullptr) or node->data == item)
             break;
 
-        else if(node->data < item )
+        else if (node->data < item)
             node = node->right;
 
         else
@@ -41,9 +42,10 @@ AVLNode* AVLTree::search(Item& item) {
     }
     return node;
 }
-int AVLTree::get_height(AVLNode *node) {
+int AVLTree::get_height(AVLNode *node)
+{
     // assuming 'node' exists in the tree
-    if(node == nullptr)
+    if (node == nullptr)
         return 0;
 
     int left_height = get_height(node->left);
@@ -51,43 +53,41 @@ int AVLTree::get_height(AVLNode *node) {
     return max(left_height, right_height) + 1;
 }
 
-AVLNode* AVLTree::right_rotate(AVLNode* node)
+AVLNode *AVLTree::right_rotate(AVLNode *node)
 {
-    AVLNode* y = node->left;
-    AVLNode* b = y->right;
+    AVLNode *y = node->left;
+    AVLNode *b = y->right;
 
     y->right = node;
     node->left = b;
 
     return y;
-
 }
 
-AVLNode* AVLTree::left_rotate(AVLNode* node)
+AVLNode *AVLTree::left_rotate(AVLNode *node)
 {
-    AVLNode* y = node->right;
-    AVLNode* b = y->left;
+    AVLNode *y = node->right;
+    AVLNode *b = y->left;
 
     y->left = node;
     node->right = b;
 
     return y;
-
 }
 
-AVLNode* AVLTree::add_by_price(AVLNode* node, Item item){
+AVLNode *AVLTree::add_by_price(AVLNode *node, Item item)
+{
     // parameter 'node' is the root of the tree
     // function returns the new root of the tree
     if (node == nullptr)
     {
-        AVLNode* new_node = new AVLNode(item);
+        AVLNode *new_node = new AVLNode(item);
         return new_node;
     }
-    if (item < node->data )
+    if (item < node->data)
         node->left = add_by_price(node->left, item);
     else
         node->right = add_by_price(node->right, item);
-
 
     // get balance factor
     int balance_factor = get_height(node->left) - get_height(node->right);
@@ -97,7 +97,7 @@ AVLNode* AVLTree::add_by_price(AVLNode* node, Item item){
         return right_rotate(node);
 
     // Right Right Case
-    if (balance_factor < -1 and  item > node->right->data)
+    if (balance_factor < -1 and item > node->right->data)
         return left_rotate(node);
 
     // Left Right Case
@@ -117,19 +117,25 @@ AVLNode* AVLTree::add_by_price(AVLNode* node, Item item){
     return node;
 }
 
-void AVLTree::insert_by_price(Item item) {
-    AVLNode* new_root = add_by_price(root, item);
+void AVLTree::insert_by_price(Item item)
+{
+    AVLNode *new_root = add_by_price(root, item);
     root = new_root;
 }
+
 
 AVLNode* AVLTree::add_by_name(AVLNode* node, Item item){
     // parameter 'node' is the root of the tree
     // function returns the new root of the tree
     if (node == nullptr)
     {
-        AVLNode* new_node = new AVLNode(item);
+        AVLNode *new_node = new AVLNode(item);
         return new_node;
     }
+    if (item < node->data.itemName)
+        node->left = add_by_name(node->left, item);
+    else
+        node->right = add_by_name(node->right, item);
     if (item < node->data.itemName )
         node->left = add_by_name(node->left, item);
     else
@@ -164,12 +170,14 @@ AVLNode* AVLTree::add_by_name(AVLNode* node, Item item){
     return node;
 }
 
-void AVLTree::insert_by_name(Item item) {
-    AVLNode* new_root = add_by_name(root, item);
+void AVLTree::insert_by_name(Item item)
+{
+    AVLNode *new_root = add_by_name(root, item);
     root = new_root;
 }
 
-AVLNode* AVLTree::remove_by_price(AVLNode* node, Item item){
+AVLNode *AVLTree::remove_by_price(AVLNode *node, Item item)
+{
     // parameter 'node' is the root of the tree
     // 'item' is a leaf
     // function returns the new root of the tree
@@ -179,11 +187,10 @@ AVLNode* AVLTree::remove_by_price(AVLNode* node, Item item){
         delete node;
         return nullptr;
     }
-    else if (item < node->data )
+    else if (item < node->data)
         node->left = remove_by_price(node->left, item);
     else
         node->right = remove_by_price(node->right, item);
-
 
     // get balance factor
     int balance_factor = get_height(node->left) - get_height(node->right);
@@ -193,7 +200,7 @@ AVLNode* AVLTree::remove_by_price(AVLNode* node, Item item){
         return right_rotate(node);
 
     // Right Right Case
-    if (balance_factor < -1 and  item > node->right->data)
+    if (balance_factor < -1 and item > node->right->data)
         return left_rotate(node);
 
     // Left Right Case
@@ -213,12 +220,8 @@ AVLNode* AVLTree::remove_by_price(AVLNode* node, Item item){
     return node;
 }
 
-void AVLTree::pop_by_price(Item item) {
-    AVLNode* new_root = remove_by_price(root, item);
-    root = new_root;
-}
-
-AVLNode* AVLTree::remove_by_name(AVLNode* node, Item item){
+AVLNode *AVLTree::remove_by_name(AVLNode *node, Item item)
+{
     // parameter 'node' is the root of the tree
     // 'item' is a leaf
     // function returns the new root of the tree
@@ -228,11 +231,10 @@ AVLNode* AVLTree::remove_by_name(AVLNode* node, Item item){
         delete node;
         return nullptr;
     }
-    else if (item < node->data.itemName )
+    else if (item < node->data.itemName)
         node->left = remove_by_name(node->left, item);
     else
         node->right = remove_by_name(node->right, item);
-
 
     // get balance factor
     int balance_factor = get_height(node->left) - get_height(node->right);
@@ -242,7 +244,7 @@ AVLNode* AVLTree::remove_by_name(AVLNode* node, Item item){
         return right_rotate(node);
 
     // Right Right Case
-    if (balance_factor < -1 and  item > node->right->data.itemName)
+    if (balance_factor < -1 and item > node->right->data.itemName)
         return left_rotate(node);
 
     // Left Right Case
@@ -262,13 +264,20 @@ AVLNode* AVLTree::remove_by_name(AVLNode* node, Item item){
     return node;
 }
 
-void AVLTree::pop_by_name(Item item) {
-    AVLNode* new_root = remove_by_name(root, item);
+void AVLTree::pop_by_price(Item item)
+{
+    AVLNode *new_root = remove_by_price(root, item);
     root = new_root;
 }
 
-void AVLTree::print(AVLNode* node) {
-    if(node == nullptr)
+void AVLTree::pop_by_name(Item item)
+{
+    AVLNode *new_root = remove_by_name(root, item);
+    root = new_root;
+}
+void AVLTree::print(AVLNode *node)
+{
+    if (node == nullptr)
         return;
     print(node->left);
     node->data.print();
@@ -276,7 +285,8 @@ void AVLTree::print(AVLNode* node) {
     print(node->right);
 }
 
-void AVLTree::traverse() {
+void AVLTree::traverse()
+{
     print(this->root);
 }
 
