@@ -175,6 +175,7 @@ void avl()
             file >> price;
             file.ignore();
 
+
             Item newItem(name, category, price);
             tree.insert(newItem);
         }
@@ -185,13 +186,12 @@ void avl()
     while (true)
     {
         cout << "1- Add item data\n";
-        cout << "2- Read items from file\n";
-        cout << "3- Remove item data\n";
-        cout << "4- Display all the items sorted by their name ascending\n";
-        cout << "5- Display all the items sorted by their name descending\n";
-        cout << "6- Display all the items sorted by their prices ascending\n";
-        cout << "7- Display all the items sorted by their prices descending\n";
-        cout << "8-Exit\n";
+        cout << "2- Remove item data\n";
+        cout << "3- Display all the items sorted by their name ascending\n";
+        cout << "4- Display all the items sorted by their name descending\n";
+        cout << "5- Display all the items sorted by their prices ascending\n";
+        cout << "6- Display all the items sorted by their prices descending\n";
+        cout << "7-Exit\n";
         cin >> choice;
         string name;
         string categ;
@@ -208,8 +208,6 @@ void avl()
                 tree.insert(Item(name, categ, price));
                 break;
             case 2:// read from file
-                break;
-            case 3:
                 cout << "Item name:\n";
                 cin >> name;
                 cout << "Item category: \n";
@@ -218,19 +216,19 @@ void avl()
                 cin >> price;
                 tree.pop(Item(name, categ, price));
                 break;
-            case 4:
+            case 3:
                 tree.traverse_ascend_name();
                 break;
-            case 5:// display sorted by name ascend
+            case 4:
                 tree.traverse_descend_name();
                 break;
-            case 6:// display sorted by name descend
+            case 5:
                 tree.traverse_ascend_price();
                 break;
-            case 7:// display sorted by price ascend
+            case 6:
                 tree.traverse_descend_price();
                 break;
-            case 8:// Break
+            case 7:
                 break_loop = true;
                 break;
         }
