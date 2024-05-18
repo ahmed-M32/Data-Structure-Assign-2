@@ -33,7 +33,6 @@ int main()
 
 void binary()
 {
-
     bool first_time = true;
     binarytree tree(Item("remove", "remove",0));
     string want_file;
