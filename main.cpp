@@ -252,13 +252,12 @@ void Heaps()
     while (true)
     {
         cout << "1- Add item data\n";
-        cout << "2- Read items from file\n";
-        cout << "3- Remove item data\n";
-        cout << "4- Display all the items sorted by their Price ascending\n";
-        cout << "5- Display all the items sorted by their name ascending\n";
-        cout << "6- Display all the items sorted by their price descending\n";
-        cout << "7- Display all the items sorted by their name descending\n";
-        cout << "8-Exit\n";
+        cout << "2- Remove item data\n";
+        cout << "3- Display all the items sorted by their Price ascending\n";
+        cout << "4- Display all the items sorted by their name ascending\n";
+        cout << "5- Display all the items sorted by their price descending\n";
+        cout << "6- Display all the items sorted by their name descending\n";
+        cout << "7-Exit\n";
         cin >> choice;
         string name;
         string categ;
@@ -275,31 +274,29 @@ void Heaps()
             heap.insert_item(Item(name, categ, price));
             break;
         case 2: // read from file
+            cout << "Item index:\n";
+                cin >> index;
+                heap.Delete_item(index);
             break;
         case 3:
-            cout << "Item index:\n";
-            cin >> index;
-            heap.Delete_item(index);
+            heap.Heap_sort();
+            heap.print_heap();
             break;
         case 4:
-            heap.Heap_sort();
+            heap.Heap_sort_Name();
             heap.print_heap();
             break;
         case 5: // display sorted by name ascend
-            heap.Heap_sort_Name();
-            heap.print_heap();
+            heap.Heap_sort();
+                reverse(heap.heap.begin(), heap.heap.end());
+                heap.print_heap();
             break;
         case 6: // display sorted by name descend
-            heap.Heap_sort();
-            reverse(heap.heap.begin(), heap.heap.end());
-            heap.print_heap();
+            heap.Heap_sort_Name();
+                reverse(heap.heap.begin(), heap.heap.end());
+                heap.print_heap();
             break;
         case 7: // display sorted by price ascend
-            heap.Heap_sort_Name();
-            reverse(heap.heap.begin(), heap.heap.end());
-            heap.print_heap();
-            break;
-        case 8: // Break
             break_loop = true;
             break;
         }
