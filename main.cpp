@@ -6,12 +6,10 @@
 // ONLY INCLUDE .h FILES not .cpp
 using namespace std;
 void binary();
-
 void avl();
 
 int main()
 {
-
       int choice;
       cout << "Choose Data Structure: \n";
       cout << "1- Binary Search Trees\n";
@@ -35,10 +33,53 @@ int main()
 
 void binary()
 {
-    int choice;
-    binarytree tree(Item("remove", "remove",0));
-    bool break_loop = false;
     bool first_time = true;
+    binarytree tree(Item("remove", "remove",0));
+    string want_file;
+    cout << "Want to add items through file? y/n\n";
+    cin >> want_file;
+    if(want_file == "y")
+    {
+        string filename;
+        cout << "filename: ";
+        cin >> filename;
+        ifstream file(filename);
+        if (!file) {
+            cerr << "Error: Unable to open file " << filename << "!" << endl;
+            return;
+        }
+        int numItems;
+        file >> numItems;
+        file.ignore();
+
+        string name, category;
+        int price;
+
+        for (int i = 0; i < numItems; ++i) {
+            getline(file, name);
+            getline(file, category);
+            file >> price;
+            file.ignore();
+
+            if(first_time)
+            {
+                tree.data.itemName = name;
+                tree.data.Price = price;
+                tree.data.Category = category;
+                first_time = false;
+            }
+            else
+            {
+                Item newItem(name, category, price);
+                tree.insert(newItem);
+            }
+
+        }
+        file.close();
+    }
+    int choice;
+    bool break_loop = false;
+
     while (true)
     {
         cout << "1- Add item data\n";
@@ -107,8 +148,39 @@ void binary()
 
 void avl()
 {
-    int choice;
     AVLTree tree;
+    string want_file;
+    cout << "Want to add items through file? y/n\n";
+    cin >> want_file;
+    if(want_file == "y")
+    {
+        string filename;
+        cout << "filename: ";
+        cin >> filename;
+        ifstream file(filename);
+        if (!file) {
+            cerr << "Error: Unable to open file " << filename << "!" << endl;
+            return;
+        }
+        int numItems;
+        file >> numItems;
+        file.ignore();
+
+        string name, category;
+        int price;
+
+        for (int i = 0; i < numItems; ++i) {
+            getline(file, name);
+            getline(file, category);
+            file >> price;
+            file.ignore();
+
+            Item newItem(name, category, price);
+            tree.insert(newItem);
+        }
+        file.close();
+    }
+    int choice;
     bool break_loop = false;
     while (true)
     {
