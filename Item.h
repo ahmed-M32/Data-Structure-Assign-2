@@ -5,11 +5,11 @@
 using namespace std;
 class Item
 {
-    int Price;
 
 public:
     Item(string name, string category, int price);
     string itemName;
+    int Price;
     string Category;
 
     string get_category();

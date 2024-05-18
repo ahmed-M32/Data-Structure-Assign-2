@@ -39,8 +39,11 @@ void Heap::Insert_Item(Item item)
     heap.push_back(item);
 }
 
-void Heap::Heap_sort()
+void Heap::Heap_sort(vector<int>& arr)
 {
+
+    
+
     int n = heap.size();
 
     for (int i = n / 2 - 1; i >= 0; i--)
@@ -54,6 +57,7 @@ void Heap::Heap_sort()
         Max_heapify(i, 0);
     }
 }
+
 
 void Heap::Heap_sort_Name()
 {

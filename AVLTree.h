@@ -24,24 +24,32 @@ class AVLTree {
         void balance();
         AVLNode* left_rotate(AVLNode* node);
         AVLNode* right_rotate(AVLNode* node);
-        AVLNode* add_by_price(AVLNode* node, Item item);
-        AVLNode* add_by_name(AVLNode* node, Item item);
-        AVLNode* remove_by_price(AVLNode* node, Item item);
-        AVLNode* remove_by_name(AVLNode* node, Item item);
-        void print_ascend(AVLNode* node);
-        void print_descend(AVLNode* node);
+
+  
+        AVLNode* add(AVLNode* node, Item item);
+        AVLNode* remove(AVLNode* node, Item item);
+        void print_ascend_price(AVLNode* node);
+        void print_ascend_name();
+        void print_descend_price(AVLNode* node);
+        void print_descend_name();
+
+  
 
 public:
         AVLNode* search(Item& item);
         AVLTree();
         void clear();
         bool isEmpty();
-        void insert_by_price(Item item);
-        void insert_by_name(Item item);
-        void pop_by_price(Item item);
-        void pop_by_name(Item item);
-        void traverse_ascend();
-        void traverse_descend();
+
+  
+        void insert(Item item);
+        void pop(Item item);
+        void traverse_ascend_name();
+        void traverse_descend_name();
+        void traverse_ascend_price();
+        void traverse_descend_price();
+
+  
 
 };
 
