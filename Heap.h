@@ -16,12 +16,13 @@ public:
     int Get_Left_Chlid(int num);
     int Get_Right_Child(int num);
     void Insert_Item(Item item);
-    void Heap_sort();
-    void Max_heapify(int i);
+    void Heap_sort();    
+    void Heap_sort_Name();
+    void Max_heapify(int size ,int i );
     void Min_heapify(int i);
     void Build_Max();
     void Build_Min();
-    void Max_heapify_By_Name(int i);
+    void Max_heapify_By_Name(int size,int i);
     void Min_heapify_By_Name(int i);
     void Build_Max_By_Name();
     void Build_Min_By_Name();

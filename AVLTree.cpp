@@ -124,57 +124,58 @@ void AVLTree::insert(Item item)
 }
 
 
-//AVLNode* AVLTree::add_by_name(AVLNode* node, Item item){
-//    // parameter 'node' is the root of the tree
-//    // function returns the new root of the tree
-//    if (node == nullptr)
-//    {
-//        AVLNode *new_node = new AVLNode(item);
-//        return new_node;
-//    }
-//    if (item < node->data.itemName)
-//        node->left = add_by_name(node->left, item);
-//    else
-//        node->right = add_by_name(node->right, item);
-//    if (item < node->data.itemName )
-//        node->left = add_by_name(node->left, item);
-//    else
-//        node->right = add_by_name(node->right, item);
-//
-//
-//    // get balance factor
-//    int balance_factor = get_height(node->left) - get_height(node->right);
-//
-//    // Left Left Case
-//    if (balance_factor > 1 and item < node->left->data.itemName)
-//        return right_rotate(node);
-//
-//    // Right Right Case
-//    if (balance_factor < -1 and  item > node->right->data.itemName)
-//        return left_rotate(node);
-//
-//    // Left Right Case
-//    if (balance_factor > 1 and item > node->left->data.itemName)
-//    {
-//        node->left = left_rotate(node->left);
-//        return right_rotate(node);
-//    }
-//
-//    // Right Left Case
-//    if (balance_factor < -1 and item < node->right->data.itemName)
-//    {
-//        node->right = right_rotate(node->right);
-//        return left_rotate(node);
-//    }
-//
-//    return node;
-//}
-//
-//void AVLTree::insert_by_name(Item item)
-//{
-//    AVLNode *new_root = add_by_name(root, item);
-//    root = new_root;
-//}
+AVLNode* AVLTree::add_by_name(AVLNode* node, Item item){
+    // parameter 'node' is the root of the tree
+    // function returns the new root of the tree
+    if (node == nullptr)
+    {
+        AVLNode *new_node = new AVLNode(item);
+        return new_node;
+    }
+    if (item < node->data.itemName)
+        node->left = add_by_name(node->left, item);
+    else
+        node->right = add_by_name(node->right, item);
+    if (item < node->data.itemName )
+        node->left = add_by_name(node->left, item);
+    else
+        node->right = add_by_name(node->right, item);
+
+
+    // get balance factor
+    int balance_factor = get_height(node->left) - get_height(node->right);
+
+    // Left Left Case
+    if (balance_factor > 1 and item < node->left->data.itemName)
+        return right_rotate(node);
+
+    // Right Right Case
+    if (balance_factor < -1 and  item > node->right->data.itemName)
+        return left_rotate(node);
+
+    // Left Right Case
+    if (balance_factor > 1 and item > node->left->data.itemName)
+    {
+        node->left = left_rotate(node->left);
+        return right_rotate(node);
+    }
+
+    // Right Left Case
+    if (balance_factor < -1 and item < node->right->data.itemName)
+    {
+        node->right = right_rotate(node->right);
+        return left_rotate(node);
+    }
+
+    return node;
+}
+
+void AVLTree::insert_by_name(Item item)
+{
+    AVLNode *new_root = add_by_name(root, item);
+    root = new_root;
+}
+
 
 AVLNode *AVLTree::remove(AVLNode *node, Item item)
 {
@@ -343,6 +344,7 @@ void AVLTree::traverse_ascend_name()
      print_ascend_name();
 }
 
+
 void AVLTree::print_descend_price(AVLNode *node)
 {
     if (node == nullptr)
@@ -362,3 +364,37 @@ void AVLTree::traverse_descend_name()
 {
     print_descend_name();
 }
+
+void AVLTree::print_ascend(AVLNode *node)
+{
+    if (node == nullptr)
+        return;
+    print_ascend(node->left);
+    node->data.print();
+    cout << " ";
+    print_ascend(node->right);
+}
+
+void AVLTree::traverse_ascend()
+{
+    print_ascend(this->root);
+}
+
+void AVLTree::print_descend(AVLNode *node)
+{
+    if (node == nullptr)
+        return;
+    print_ascend(node->right);
+    node->data.print();
+    cout << " ";
+    print_ascend(node->left);
+}
+
+void AVLTree::traverse_descend()
+{
+    print_descend(this->root);
+}
+
+
+
+
