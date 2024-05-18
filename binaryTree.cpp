@@ -11,7 +11,7 @@ private:
 public:
     Item data;
 
-    binarytree(Item it) : left(nullptr), right(nullptr), data(it), root(nullptr) {}
+    binarytree(Item it) : left(nullptr), right(nullptr), data(it), root(this) {}
 
     binarytree* add_item(Item it) {
         if (it < data) {
@@ -80,17 +80,15 @@ public:
 //        for (const auto& it : sorted) {
 //            cout << it << endl;
 //        }
-        if (root == nullptr)
-            return;
+
 
         stack<binarytree*> s;
         vector<Item> result;
         binarytree* current = root;
-
         while (current != nullptr || !s.empty()) {
             while (current != nullptr) {
                 s.push(current);
-                current = current->left; 
+                current = current->left;
             }
             current = s.top();
             s.pop();
@@ -110,9 +108,6 @@ public:
 //        for (const auto& it : sorted) {
 //            cout << it << endl;
 //        }
-
-        if (root == nullptr)
-            return;
 
         stack<binarytree*> s;
         vector<Item> result;
@@ -150,3 +145,11 @@ public:
             left->print_prices_descending();
     }
 };
+
+//int main()
+//{
+//    binarytree tree(Item("a", "b", 1));
+//    tree.insert(Item("b", "C",2));
+//    tree.print_namedescending();
+//
+//}
