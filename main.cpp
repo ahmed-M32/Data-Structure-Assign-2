@@ -5,6 +5,37 @@
 // ONLY INCLUDE .h FILES not .cpp
 using namespace std;
 
+void readItems(const string& filename, AVLTree& tree, bool by_price = true) {
+    ifstream file(filename);
+    if (!file) {
+        cerr << "Error: Unable to open file " << filename << "!" << endl;
+        return;
+    }
+
+    int numItems;
+    file >> numItems;
+    file.ignore();
+
+    string name, category;
+    int price;
+
+    for (int i = 0; i < numItems; ++i) {
+        getline(file, name);
+        getline(file, category);
+        file >> price;
+        file.ignore();
+
+        Item newItem(name, category, price);
+        if (by_price) {
+            tree.insert_by_price(newItem);
+        } else {
+            tree.insert_by_name(newItem);
+        }
+    }
+
+    file.close();
+}
+
 int main()
 {
 //    Item i1("item1", "food", 123);
