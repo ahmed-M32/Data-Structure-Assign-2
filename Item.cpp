@@ -66,5 +66,5 @@ bool Item::operator==(Item &another)
 
 void Item::print()
 {
-    cout << this->itemName << ", " << this->Price << ", " << this->Category << endl;
+    cout << "Item Name: " << itemName << ", Category: " << Category << ", Price: " << Price << endl;
 }
