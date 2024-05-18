@@ -6,6 +6,7 @@
 // ONLY INCLUDE .h FILES not .cpp
 using namespace std;
 void binary();
+
 void avl();
 
 int main()
