@@ -90,7 +90,7 @@ public:
         while (current != nullptr || !s.empty()) {
             while (current != nullptr) {
                 s.push(current);
-                current = current->left;
+                current = current->left; 
             }
             current = s.top();
             s.pop();
